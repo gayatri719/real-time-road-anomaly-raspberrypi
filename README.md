@@ -14,7 +14,7 @@ The system detects:
 - Potholes (with diameter estimation in pixels)
 - Vehicles (with motion classification: Moving / Stationary / Unknown)
 - Animals
-- Unexpected obstacles
+
 
 The model is based on YOLO11n, exported to ONNX format, and deployed using ONNX Runtime on Raspberry Pi.
 
@@ -35,7 +35,6 @@ All detections are logged in a structured CSV file, and the annotated output vid
 
 - Raspberry Pi 4  
 - 64-bit Raspberry Pi OS  
-- Cooling setup (heat sink + fan)  
 - High-speed microSD card  
 - Input Source: Recorded MP4 dashcam footage  
 
