@@ -47,11 +47,11 @@ All detections are logged in a structured CSV file, and the annotated output vid
 ## 💻 Software Stack
 
 ```
-Python 3.11+
-OpenCV 4.x
+Python 3.9+
+OpenCV
 NumPy
 Pandas
-ONNX Runtime 1.x
+ONNX Runtime
 YOLO11n (custom-trained for pothole detection)
 ```
 
@@ -132,7 +132,7 @@ YOLO11n (custom-trained for pothole detection)
 
 ## 📊 Output Logging
 
-All detections are saved in a structured CSV file .
+All detections are saved in a structured CSV file (`detection_log.csv`).
 
 ### CSV Format
 
@@ -264,7 +264,55 @@ The system will:
 
 ---
 
-## 📹 Demo Videos
+## 📄 Project Documentation
+
+### 📑 Detailed Technical Report
+
+A comprehensive technical report is available that covers the complete implementation details, methodology, results, and analysis of this project.
+
+**[📥 Download Full Project Report (PDF)](Document.pdf)**
+
+### Report Highlights:
+
+#### 🎯 **Executive Summary**
+- Real-time edge AI system on Raspberry Pi 4
+- 5 FPS processing with YOLOv11n models
+- Dual-model architecture for potholes and obstacles
+- Comprehensive logging and motion tracking
+
+#### 🔬 **Technical Implementation**
+- **Novel Contributions:**
+  - Dual-model edge deployment (ONNX + PyTorch)
+  - Intelligent multi-frame motion tracking
+  - Automated pothole severity assessment
+  - Adaptive confidence thresholding
+  - Comprehensive edge logging system
+
+#### 📊 **Key Results**
+| Metric | Target | Achieved |
+|--------|--------|----------|
+| Inference FPS | ≥5 FPS | ✅ 5.0 FPS |
+| Processing Time | <200 ms | ✅ ~200 ms |
+| Memory Usage | <2 GB | ✅ ~800 MB |
+| CPU Utilization | Optimized | ✅ 60-70% |
+
+
+
+### 📋 Report Contents:
+1. Executive Summary
+2. Introduction & Problem Statement
+3. Methodology & System Architecture
+4. Technical Implementation
+5. Hardware Utilization & Optimization
+6. Results & Performance Analysis
+7. Challenges & Solutions
+8. Future Enhancements
+9. Code Documentation
+10. Installation Guide
+
+---
+
+## 🎬 Demo Videos
 
 Three demonstration videos showing real-time detection, FPS display, and CSV logging. **Click on the video titles to play them directly!**
 
@@ -324,8 +372,6 @@ Complex scenario with animals, vehicles, and road anomalies.
 
 
 
----
-
 ## 👩‍💻 Author
 
 **Gayatri A**  
@@ -334,5 +380,9 @@ Bharat AI SoC Student Challenge
 
 ---
 
+ ONNX Runtime team
+- Raspberry Pi Foundation
 
-<p align="center">Made with ❤️ for safer roads</p>
+---
+
+<p align="center">Made with ❤️ for safer roads</p>w
