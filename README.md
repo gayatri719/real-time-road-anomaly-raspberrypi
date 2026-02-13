@@ -17,6 +17,7 @@ This project implements a real-time **Edge AI system** on Raspberry Pi 4 for det
 - 🕳️ **Potholes** (with diameter estimation in pixels)
 - 🚗 **Vehicles** (with motion classification: Moving / Stationary / Unknown)
 - 🦌 **Animals**
+- 🚧 **Unexpected obstacles**
 
 The model is based on **YOLO11n**, exported to ONNX format, and deployed using **ONNX Runtime** on Raspberry Pi.
 
@@ -158,17 +159,52 @@ real-time-road-anomaly-raspberrypi/
 ├── requirements.txt
 │
 ├── models/
-│   └── best.onnx
+│   └── best.onnx                    # YOLO11n ONNX model
 │
 ├── src/
-│   └── main.py
+│   └── main.py                      # Main detection script
 │
 ├── data/
-│   ├── sample_input.mp4
-│   └── detection_log.csv
+│   ├── detection_log_1.csv          # Detection results for video 1
+│   ├── detection_log_2.csv          # Detection results for video 2
+│   └── detection_log_3.csv          # Detection results for video 3
 │
 └── demo/
-    └── demo_video.mp4
+    ├── demo_video_1.mp4             # Demo output video 1
+    ├── demo_video_2.mp4             # Demo output video 2
+    └── demo_video_3.mp4             # Demo output video 3
+```
+
+---
+
+## 💡 Code Structure
+
+### `main.py` - Core Components
+
+#### **RoadAnomalyDetector Class**
+
+```python
+class RoadAnomalyDetector:
+    """Real-time road anomaly detection using YOLO11n ONNX model"""
+```
+
+**Key Methods:**
+
+1. **`__init__()`** - Initialize ONNX Runtime session and model parameters
+2. **`preprocess()`** - Resize, normalize, and format input images
+3. **`postprocess()`** - Parse YOLO outputs and apply NMS
+4. **`estimate_pothole_diameter()`** - Calculate pothole size in pixels
+5. **`classify_vehicle_motion()`** - Determine if vehicle is moving/stationary
+6. **`log_detection()`** - Record detections to internal log
+7. **`save_log_to_csv()`** - Export detection log to CSV
+8. **`draw_detections()`** - Annotate frames with bounding boxes
+9. **`process_video()`** - Main video processing pipeline
+
+#### **Detection Pipeline**
+
+```python
+Frame Input → Preprocess → ONNX Inference → Postprocess → 
+Feature Extraction → Logging → Annotation → Output
 ```
 
 ---
@@ -188,17 +224,48 @@ cd real-time-road-anomaly-raspberrypi
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Run the Application
+### 3️⃣ Prepare Your Video Files
+
+Place your input video files in a `data/` folder or specify the path in the script.
+
+### 4️⃣ Run the Application
+
+**For single video processing:**
 
 ```bash
 python src/main.py
 ```
+
+**For processing multiple videos (batch mode):**
+
+Modify the `main()` function in `main.py` to process multiple videos:
+
+```python
+def main():
+    model_path = "models/best.onnx"
+    
+    # List of videos to process
+    videos = [
+        ("data/input_video_1.mp4", "demo/demo_video_1.mp4", "data/detection_log_1.csv"),
+        ("data/input_video_2.mp4", "demo/demo_video_2.mp4", "data/detection_log_2.csv"),
+        ("data/input_video_3.mp4", "demo/demo_video_3.mp4", "data/detection_log_3.csv"),
+    ]
+    
+    detector = RoadAnomalyDetector(model_path=model_path)
+    
+    for input_vid, output_vid, output_csv in videos:
+        print(f"\nProcessing: {input_vid}")
+        detector.process_video(input_vid, output_vid, output_csv)
+```
+
+### 5️⃣ Output
 
 The system will:
 - ✅ Process recorded dashcam footage
 - ✅ Perform real-time inference (~5 FPS)
 - ✅ Display annotated output video
 - ✅ Save detection results in CSV format
+- ✅ Generate 3 demo videos with corresponding CSV logs
 
 ---
 
@@ -226,9 +293,13 @@ The system will:
 
 ## 📹 Demo
 
-A demonstration video showing real-time detection, FPS display, and CSV logging is available in the `demo/` folder.
+Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the `demo/` folder:
 
-![Demo Preview](demo/demo_video.mp4)
+- **demo_video_1.mp4** - Urban road scenario with potholes and vehicles
+- **demo_video_2.mp4** - Highway scenario with moving vehicles
+- **demo_video_3.mp4** - Rural road with animals and obstacles
+
+Each video has a corresponding CSV file in the `data/` folder with detailed detection logs.
 
 ---
 
@@ -254,20 +325,13 @@ A demonstration video showing real-time detection, FPS display, and CSV logging 
 
 
 
-
-
----
-
 ## 👩‍💻 Author
 
 **Gayatri A**  
 B.Tech Electronics & Communication Engineering  
 Bharat AI SoC Student Challenge
 
-
 ---
 
-
----
 
 <p align="center">Made with ❤️ for safer roads</p>
