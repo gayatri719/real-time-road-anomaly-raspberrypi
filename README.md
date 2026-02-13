@@ -17,7 +17,6 @@ This project implements a real-time **Edge AI system** on Raspberry Pi 4 for det
 - 🕳️ **Potholes** (with diameter estimation in pixels)
 - 🚗 **Vehicles** (with motion classification: Moving / Stationary / Unknown)
 - 🦌 **Animals**
-- 🚧 **Unexpected obstacles**
 
 The model is based on **YOLO11n**, exported to ONNX format, and deployed using **ONNX Runtime** on Raspberry Pi.
 
