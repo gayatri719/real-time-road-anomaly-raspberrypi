@@ -132,7 +132,7 @@ YOLO11n (custom-trained for pothole detection)
 
 ## 📊 Output Logging
 
-All detections are saved in a structured CSV file (`detection_log.csv`).
+All detections are saved in a structured CSV file .
 
 ### CSV Format
 
