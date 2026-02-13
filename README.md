@@ -172,7 +172,9 @@ real-time-road-anomaly-raspberrypi/
 
 ## 💡 Code Structure
 
-### `main.py` - Core Components
+### 📝 [View Full Source Code - main.py](main.py)
+
+Click above to view the complete implementation! The code includes:
 
 #### **RoadAnomalyDetector Class**
 
@@ -229,8 +231,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-*
-
 ### 4️⃣ Output
 
 The system will:
@@ -264,15 +264,41 @@ The system will:
 
 ---
 
-## 📹 Demo
+## 📹 Demo Videos
 
-Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the repository:
+Three demonstration videos showing real-time detection, FPS display, and CSV logging. **Click on the video titles to play them directly!**
 
-- **demo1.mp4** - rural road scenario with potholes 
-- **demo2.mp4** - Highway scenario with moving vehicles and potholes
-- **demo3.mp4** - Rural road with animals and vehicles
+### 🎬 Demo Video 1 - Rural Road with Potholes
 
-Each video has a corresponding CSV file (**demo1.csv**, **demo2.csv**, **demo3.csv**) with detailed detection logs.
+[▶️ **Click here to watch demo1.mp4**](https://github.com/gayatri719/real-time-road-anomaly-raspberrypi/blob/main/demo1.mp4)
+
+Rural road scenario demonstrating pothole detection capabilities.
+
+📊 **[View Detection Results (demo1.csv)](demo1.csv)**
+
+---
+
+### 🎬 Demo Video 2 - Highway with Vehicles and Potholes
+
+[▶️ **Click here to watch demo2.mp4**](https://github.com/gayatri719/real-time-road-anomaly-raspberrypi/blob/main/demo2.mp4)
+
+Highway scenario showing vehicle tracking and pothole detection.
+
+📊 **[View Detection Results (demo2.csv)](demo2.csv)**
+
+---
+
+### 🎬 Demo Video 3 - Rural Road with Animals and Vehicles
+
+[▶️ **Click here to watch demo3.mp4**](https://github.com/gayatri719/real-time-road-anomaly-raspberrypi/blob/main/demo3.mp4)
+
+Complex scenario with animals, vehicles, and road anomalies.
+
+📊 **[View Detection Results (demo3.csv)](demo3.csv)**
+
+---
+
+> **Note:** Click on any video link above, then click the "View raw" or download button on GitHub to play the video. You can also click on the CSV files to view the detailed detection logs.
 
 ---
 
@@ -298,12 +324,15 @@ Each video has a corresponding CSV file (**demo1.csv**, **demo2.csv**, **demo3.c
 
 
 
+---
+
 ## 👩‍💻 Author
 
 **Gayatri A**  
 B.Tech Electronics & Communication Engineering  
 Bharat AI SoC Student Challenge
 
+---
 
 
 <p align="center">Made with ❤️ for safer roads</p>
