@@ -47,11 +47,11 @@ All detections are logged in a structured CSV file, and the annotated output vid
 ## 💻 Software Stack
 
 ```
-Python 3.9+
-OpenCV
+Python 3.11+
+OpenCV 4.x
 NumPy
 Pandas
-ONNX Runtime
+ONNX Runtime 1.x
 YOLO11n (custom-trained for pothole detection)
 ```
 
