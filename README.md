@@ -1,4 +1,3 @@
-```markdown
 # real-time-road-anomaly-raspberrypi
 Real-time road anomaly detection on Raspberry Pi 4 using YOLO11n (ONNX Runtime). Detects potholes (with diameter estimation), vehicles (motion classification), animals, and obstacles from recorded dashcam footage at ~5 FPS.
 
@@ -65,8 +64,6 @@ All detections are logged in a structured CSV file, and the annotated output vid
 
 ## ⚙️ System Architecture
 
-```
-
 Recorded Dashcam Video (MP4)
 ↓
 OpenCV Video Capture
@@ -84,134 +81,12 @@ Object Classification
 ↓
 Feature Extraction
 
-* Diameter Estimation (Potholes)
-* Motion Classification (Vehicles)
-  ↓
-  Logging Module
-  (CSV File Storage)
-  ↓
-  Output Display
-  (Bounding Boxes + FPS + Frame Count)
+Diameter Estimation (Potholes)
 
-```
-
----
-
-## 📊 Output Logging
-
-All detections are saved in a structured CSV file (`detection_log.csv`).
-
-### CSV Format
-
-| Serial_Number | Frame_Number | Class | Confidence | BBox (x,y,w,h) | Diameter | Motion_Status |
-|--------------|-------------|--------|------------|----------------|----------|---------------|
-
-- **Class** → pothole / vehicle / animal  
-- **Diameter** → Calculated for potholes (in pixels)  
-- **Motion_Status** → Moving / Stationary / Unknown (for vehicles)  
-
----
-
-## 📂 Repository Structure
-
-```
-
-real-time-road-anomaly-raspberrypi/
-│
-├── README.md
-├── requirements.txt
-│
-├── models/
-│   └── best.onnx
-│
-├── src/
-│   └── main.py
-│
-├── data/
-│   ├── sample_input.mp4
-│   └── detection_log.csv
-│
-└── demo/
-└── demo_video.mp4
-
-````
-
----
-
-## ▶️ How to Run
-
-### 1️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-````
-
-### 2️⃣ Run the Application
-
-```bash
-python src/main.py
-```
-
-The system will:
-
-* Process recorded dashcam footage
-* Perform real-time inference (~5 FPS)
-* Display annotated output video
-* Save detection results in CSV format
-
----
-
-## 📈 Performance Summary
-
-| Parameter        | Value                           |
-| ---------------- | ------------------------------- |
-| Platform         | Raspberry Pi 4 (ARM Cortex-A72) |
-| OS               | 64-bit Raspberry Pi OS          |
-| Model Format     | ONNX                            |
-| Inference Engine | ONNX Runtime                    |
-| Average FPS      | ~5 FPS                          |
-| Input Source     | Recorded MP4 Video              |
-
----
-
-## 🔬 Optimization Strategy
-
-* Lightweight YOLO11n architecture selected for edge deployment
-* ONNX Runtime used for efficient ARM CPU execution
-* Confidence threshold tuning to reduce false positives
-* Optimized input resolution for balanced speed and accuracy
-
----
-
-## 📹 Demo
-
-A demonstration video showing real-time detection, FPS display, and CSV logging is available in the `demo/` folder.
-
----
-
-## 🎓 Learning Outcomes
-
-* Edge AI deployment on ARM architecture
-* Neural network optimization for embedded systems
-* Real-time computer vision pipeline development
-* Understanding speed vs accuracy trade-offs
-
----
-
-## 🚀 Future Improvements
-
-* INT8 quantization for higher FPS
-* TensorFlow Lite comparison
-* Distance estimation using monocular depth
-* GPS-based anomaly tagging
-
----
-
-## 👩‍💻 Author
-
-Gayatri A
-B.Tech Electronics & Communication Engineering
-Bharat AI SoC Student Challenge
-
-```
-```
+Motion Classification (Vehicles)
+↓
+Logging Module
+(CSV File Storage)
+↓
+Output Display
+(Bounding Boxes + FPS + Frame Count)
