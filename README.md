@@ -274,9 +274,9 @@ The system will:
 
 Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the `demo/` folder:
 
-- **demo_video_1.mp4** - Rural road scenario with potholes
-- **demo_video_2.mp4** - Highway scenario with moving vehicles and Potholes
-- **demo_video_3.mp4** - Rural road with animals and Vehicles
+- **demo1.mp4** - Rural road scenario with potholes
+- **demo2.mp4** - Highway scenario with moving vehicles and Potholes
+- **demo3.mp4** - Rural road with animals and Vehicles
 
 Each video has a corresponding CSV file in the `data/` folder with detailed detection logs.
 
