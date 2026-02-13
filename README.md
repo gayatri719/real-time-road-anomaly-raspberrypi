@@ -63,30 +63,84 @@ All detections are logged in a structured CSV file, and the annotated output vid
 ---
 
 ## ⚙️ System Architecture
-
 Recorded Dashcam Video (MP4)
-↓
+            ↓
 OpenCV Video Capture
-↓
+            ↓
 Frame Preprocessing
 (Resize → Normalize → Format Conversion)
-↓
+            ↓
 ONNX Runtime Inference (YOLO11n - ARM CPU)
-↓
+            ↓
 Post-Processing
 (NMS + Confidence Filtering)
-↓
+            ↓
 Object Classification
 (Potholes / Vehicles / Animals / Obstacles)
-↓
+            ↓
 Feature Extraction
-
-Diameter Estimation (Potholes)
-
-Motion Classification (Vehicles)
-↓
+- Diameter Estimation (Potholes)
+- Motion Classification (Vehicles)
+            ↓
 Logging Module
 (CSV File Storage)
-↓
+            ↓
 Output Display
 (Bounding Boxes + FPS + Frame Count)
+
+
+
+
+
+
+
+---
+
+## 📊 Output Logging
+
+All detections are saved in a structured CSV file (`detection_log.csv`).
+
+### CSV Format
+
+| Serial_Number | Frame_Number | Class | Confidence | BBox (x,y,w,h) | Diameter | Motion_Status |
+|--------------|-------------|--------|------------|----------------|----------|---------------|
+
+- **Class** → pothole / vehicle / animal  
+- **Diameter** → Calculated for potholes (in pixels)  
+- **Motion_Status** → Moving / Stationary / Unknown (for vehicles)  
+
+---
+
+## 📂 Repository Structure
+real-time-road-anomaly-raspberrypi/
+│
+├── README.md # Project documentation
+├── requirements.txt # Python dependencies
+│
+├── models/ # Trained and exported models
+│ └── best.onnx # YOLO11n ONNX model
+│
+├── src/ # Source code
+│ └── main.py # Main inference pipeline
+│
+├── data/ # Input and output files
+│ ├── sample_input.mp4 # Recorded dashcam footage
+│ └── detection_log.csv # Detection results log
+│
+└── demo/ # Demo video
+└── demo_video.mp4
+
+
+---
+
+## ▶️ How to Run
+
+### 1️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+
+python src/main.py
+
+
+
