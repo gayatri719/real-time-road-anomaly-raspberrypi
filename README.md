@@ -1,22 +1,25 @@
-# real-time-road-anomaly-raspberrypi
-Real-time road anomaly detection on Raspberry Pi 4 using YOLO11n (ONNX Runtime). Detects potholes (with diameter estimation), vehicles (motion classification), animals, and obstacles from recorded dashcam footage at ~5 FPS.
+# 🚗 Real-Time Road Anomaly Detection on Raspberry Pi 4
 
-# 🚗 Real-Time Road Anomaly Detection on Raspberry Pi 4  
 ### Bharat AI SoC Student Challenge – Problem Statement 3
+
+[![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%204-red)](https://www.raspberrypi.org/)
+[![Model](https://img.shields.io/badge/Model-YOLO11n-blue)](https://github.com/ultralytics/ultralytics)
+[![Runtime](https://img.shields.io/badge/Runtime-ONNX-green)](https://onnxruntime.ai/)
+[![FPS](https://img.shields.io/badge/FPS-~5-orange)](https://github.com)
 
 ---
 
 ## 📌 Project Overview
 
-This project implements a real-time Edge AI system on Raspberry Pi 4 for detecting road anomalies from recorded dashcam footage.
+This project implements a real-time **Edge AI system** on Raspberry Pi 4 for detecting road anomalies from recorded dashcam footage.
 
-The system detects:
+### Detected Objects:
+- 🕳️ **Potholes** (with diameter estimation in pixels)
+- 🚗 **Vehicles** (with motion classification: Moving / Stationary / Unknown)
+- 🦌 **Animals**
+- 🚧 **Unexpected obstacles**
 
-- Potholes (with diameter estimation in pixels)
-- Vehicles (with motion classification: Moving / Stationary / Unknown)
-- Animals
-
-The model is based on YOLO11n, exported to ONNX format, and deployed using ONNX Runtime on Raspberry Pi.
+The model is based on **YOLO11n**, exported to ONNX format, and deployed using **ONNX Runtime** on Raspberry Pi.
 
 All detections are logged in a structured CSV file, and the annotated output video displays FPS and frame statistics.
 
@@ -24,75 +27,107 @@ All detections are logged in a structured CSV file, and the annotated output vid
 
 ## 🎯 Objective
 
-- Achieve ≥5 FPS inference on Raspberry Pi 4  
-- Detect and log road anomalies from recorded video  
-- Maintain high precision with reduced false positives  
-- Perform complete edge processing (no cloud dependency)
+- ✅ Achieve **≥5 FPS** inference on Raspberry Pi 4
+- ✅ Detect and log road anomalies from recorded video
+- ✅ Maintain high precision with reduced false positives
+- ✅ Perform complete edge processing (no cloud dependency)
 
 ---
 
 ## 🛠 Hardware Used
 
-- Raspberry Pi 4  
-- 64-bit Raspberry Pi OS  
-- High-speed microSD card  
-- Input Source: Recorded MP4 dashcam footage  
+| Component | Specification |
+|-----------|---------------|
+| **Board** | Raspberry Pi 4 |
+| **OS** | 64-bit Raspberry Pi OS |
+| **Storage** | High-speed microSD card |
+| **Input Source** | Recorded MP4 dashcam footage |
 
 ---
 
 ## 💻 Software Stack
 
-- Python 3.9+  
-- OpenCV  
-- NumPy  
-- Pandas  
-- ONNX Runtime  
-- YOLO11n (custom-trained for pothole detection)
+```
+Python 3.9+
+OpenCV
+NumPy
+Pandas
+ONNX Runtime
+YOLO11n (custom-trained for pothole detection)
+```
 
 ---
 
 ## 🧠 Model Details
 
-- Base Model: YOLO11n  
-- Custom-trained for pothole detection  
-- Exported Model: `best.onnx`  
-- Inference Engine: ONNX Runtime  
-- Deployment Mode: CPU (ARM Cortex-A72)  
-- Average Performance: ~5 FPS  
+| Parameter | Value |
+|-----------|-------|
+| **Base Model** | YOLO11n |
+| **Training** | Custom-trained for pothole detection |
+| **Exported Model** | `best.onnx` |
+| **Inference Engine** | ONNX Runtime |
+| **Deployment Mode** | CPU (ARM Cortex-A72) |
+| **Average Performance** | ~5 FPS |
 
 ---
 
 ## ⚙️ System Architecture
-Recorded Dashcam Video (MP4)
-            ↓
-OpenCV Video Capture
-            ↓
-Frame Preprocessing
-(Resize → Normalize → Format Conversion)
-            ↓
-ONNX Runtime Inference (YOLO11n - ARM CPU)
-            ↓
-Post-Processing
-(NMS + Confidence Filtering)
-            ↓
-Object Classification
-(Potholes / Vehicles / Animals / Obstacles)
-            ↓
-Feature Extraction
-- Diameter Estimation (Potholes)
-- Motion Classification (Vehicles)
-            ↓
-Logging Module
-(CSV File Storage)
-            ↓
-Output Display
-(Bounding Boxes + FPS + Frame Count)
 
-
-
-
-
-
+```
++-----------------------------+
+| Recorded Dashcam Video (MP4) |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| OpenCV Video Capture        |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Frame Preprocessing         |
+| (Resize → Normalize →       |
+|  Format Conversion)         |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| ONNX Runtime Inference      |
+| (YOLO11n - ARM CPU)         |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Post-Processing             |
+| (NMS + Confidence Filter)   |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Object Classification       |
+| (Potholes / Vehicles /      |
+|  Animals / Obstacles)       |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Feature Extraction          |
+| - Diameter Estimation       |
+| - Motion Classification     |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Logging Module              |
+| (CSV File Storage)          |
++-----------------------------+
+              |
+              v
++-----------------------------+
+| Output Display              |
+| (BBox + FPS + Frame Count)  |
++-----------------------------+
+```
 
 ---
 
@@ -103,52 +138,137 @@ All detections are saved in a structured CSV file (`detection_log.csv`).
 ### CSV Format
 
 | Serial_Number | Frame_Number | Class | Confidence | BBox (x,y,w,h) | Diameter | Motion_Status |
-|--------------|-------------|--------|------------|----------------|----------|---------------|
+|---------------|--------------|-------|------------|----------------|----------|---------------|
+| 1 | 42 | pothole | 0.89 | (120,340,45,52) | 48.5 | N/A |
+| 2 | 43 | vehicle | 0.92 | (300,200,80,60) | N/A | Moving |
+| 3 | 45 | animal | 0.85 | (450,150,30,40) | N/A | N/A |
 
-- **Class** → pothole / vehicle / animal  
-- **Diameter** → Calculated for potholes (in pixels)  
-- **Motion_Status** → Moving / Stationary / Unknown (for vehicles)  
+#### Column Descriptions:
+- **Class** → pothole / vehicle / animal / obstacle
+- **Diameter** → Calculated for potholes (in pixels)
+- **Motion_Status** → Moving / Stationary / Unknown (for vehicles)
 
 ---
 
 ## 📂 Repository Structure
+
+```
 real-time-road-anomaly-raspberrypi/
 │
-├── README.md # Project documentation
-├── requirements.txt # Python dependencies
+├── README.md
+├── requirements.txt
 │
-├── models/ # Trained and exported models
-│ └── best.onnx # YOLO11n ONNX model
+├── models/
+│   └── best.onnx
 │
-├── src/ # Source code
-│ └── main.py # Main inference pipeline
+├── src/
+│   └── main.py
 │
-├── data/ # Input and output files
-│ ├── sample_input.mp4 # Recorded dashcam footage
-│ └── detection_log.csv # Detection results log
+├── data/
+│   ├── sample_input.mp4
+│   └── detection_log.csv
 │
-└── demo/ # Demo video
-└── demo_video.mp4
-
+└── demo/
+    └── demo_video.mp4
+```
 
 ---
 
 ## ▶️ How to Run
 
-### 1️⃣ Install Dependencies
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/real-time-road-anomaly-raspberrypi.git
+cd real-time-road-anomaly-raspberrypi
+```
+
+### 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+```
 
+### 3️⃣ Run the Application
+
+```bash
 python src/main.py
+```
+
+The system will:
+- ✅ Process recorded dashcam footage
+- ✅ Perform real-time inference (~5 FPS)
+- ✅ Display annotated output video
+- ✅ Save detection results in CSV format
+
+---
+
+## 📈 Performance Summary
+
+| Parameter | Value |
+|-----------|-------|
+| **Platform** | Raspberry Pi 4 (ARM Cortex-A72) |
+| **OS** | 64-bit Raspberry Pi OS |
+| **Model Format** | ONNX |
+| **Inference Engine** | ONNX Runtime |
+| **Average FPS** | ~5 FPS |
+| **Input Source** | Recorded MP4 Video |
+
+---
+
+## 🔬 Optimization Strategy
+
+- 🎯 Lightweight **YOLO11n** architecture selected for edge deployment
+- ⚡ **ONNX Runtime** used for efficient ARM CPU execution
+- 🎚️ Confidence threshold tuning to reduce false positives
+- 📐 Optimized input resolution for balanced speed and accuracy
+
+---
+
+## 📹 Demo
+
+A demonstration video showing real-time detection, FPS display, and CSV logging is available in the `demo/` folder.
+
+![Demo Preview](demo/demo_video.mp4)
+
+---
+
+## 🎓 Learning Outcomes
+
+- ✅ Edge AI deployment on ARM architecture
+- ✅ Neural network optimization for embedded systems
+- ✅ Real-time computer vision pipeline development
+- ✅ Understanding speed vs accuracy trade-offs
+
+---
+
+## 🚀 Future Improvements
+
+- [ ] **INT8 quantization** for higher FPS
+- [ ] **TensorFlow Lite** comparison
+- [ ] **Distance estimation** using monocular depth
+- [ ] **GPS-based anomaly tagging**
+- [ ] Multi-threading for parallel processing
+- [ ] Real-time streaming support
 
 ---
 
 
 
 
+
+---
+
+## 👩‍💻 Author
+
+**Gayatri A**  
+B.Tech Electronics & Communication Engineering  
 Bharat AI SoC Student Challenge
 
 
+---
 
 
+---
+
+<p align="center">Made with ❤️ for safer roads</p>
