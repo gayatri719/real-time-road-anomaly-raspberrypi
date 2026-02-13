@@ -18,7 +18,6 @@ This project implements a real-time **Edge AI system** on Raspberry Pi 4 for det
 - 🚗 **Vehicles** (with motion classification: Moving / Stationary / Unknown)
 - 🦌 **Animals**
 
-
 The model is based on **YOLO11n**, exported to ONNX format, and deployed using **ONNX Runtime** on Raspberry Pi.
 
 All detections are logged in a structured CSV file, and the annotated output video displays FPS and frame statistics.
@@ -155,24 +154,18 @@ All detections are saved in a structured CSV file (`detection_log.csv`).
 ```
 real-time-road-anomaly-raspberrypi/
 │
-├── README.md
-├── requirements.txt
+├── README.md                        # Project documentation
+├── main.py                          # Main detection script
+├── best.onnx                        # YOLO11n ONNX model
+├── yolo11n.pt                       # YOLO11n PyTorch model
 │
-├── models/
-│   └── best.onnx                    # YOLO11n ONNX model
+├── demo1.mp4                        # Demo output video 1
+├── demo2.mp4                        # Demo output video 2
+├── demo3.mp4                        # Demo output video 3
 │
-├── src/
-│   └── main.py                      # Main detection script
-│
-├── data/
-│   ├── detection_log_1.csv          # Detection results for video 1
-│   ├── detection_log_2.csv          # Detection results for video 2
-│   └── detection_log_3.csv          # Detection results for video 3
-│
-└── demo/
-    ├── demo_video_1.mp4             # Demo output video 1
-    ├── demo_video_2.mp4             # Demo output video 2
-    └── demo_video_3.mp4             # Demo output video 3
+├── demo1.csv                        # Detection results for video 1
+├── demo2.csv                        # Detection results for video 2
+└── demo3.csv                        # Detection results for video 3
 ```
 
 ---
@@ -214,30 +207,31 @@ Feature Extraction → Logging → Annotation → Output
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/real-time-road-anomaly-raspberrypi.git
+git clone https://github.com/gayatri719/real-time-road-anomaly-raspberrypi.git
 cd real-time-road-anomaly-raspberrypi
 ```
 
 ### 2️⃣ Install Dependencies
 
 ```bash
+pip install opencv-python numpy pandas onnxruntime
+```
+
+Or use the requirements file:
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Prepare Your Video Files
-
-Place your input video files in a `data/` folder or specify the path in the script.
-
-### 4️⃣ Run the Application
-
-**For single video processing:**
+### 3️⃣ Run the Application
 
 ```bash
-python src/main.py
+python main.py
 ```
 
+*
 
-### 5️⃣ Output
+### 4️⃣ Output
 
 The system will:
 - ✅ Process recorded dashcam footage
@@ -272,13 +266,13 @@ The system will:
 
 ## 📹 Demo
 
-Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the `demo/` folder:
+Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the repository:
 
-- **demo1.mp4** - Rural road scenario with potholes
-- **demo2.mp4** - Highway scenario with moving vehicles and Potholes
-- **demo3.mp4** - Rural road with animals and Vehicles
+- **demo1.mp4** - rural road scenario with potholes 
+- **demo2.mp4** - Highway scenario with moving vehicles and potholes
+- **demo3.mp4** - Rural road with animals and vehicles
 
-Each video has a corresponding CSV file in the `data/` folder with detailed detection logs.
+Each video has a corresponding CSV file (**demo1.csv**, **demo2.csv**, **demo3.csv**) with detailed detection logs.
 
 ---
 
@@ -310,7 +304,6 @@ Each video has a corresponding CSV file in the `data/` folder with detailed dete
 B.Tech Electronics & Communication Engineering  
 Bharat AI SoC Student Challenge
 
----
 
 
 <p align="center">Made with ❤️ for safer roads</p>
