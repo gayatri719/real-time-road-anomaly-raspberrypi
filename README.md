@@ -236,27 +236,6 @@ Place your input video files in a `data/` folder or specify the path in the scri
 python src/main.py
 ```
 
-**For processing multiple videos (batch mode):**
-
-Modify the `main()` function in `main.py` to process multiple videos:
-
-```python
-def main():
-    model_path = "models/best.onnx"
-    
-    # List of videos to process
-    videos = [
-        ("data/input_video_1.mp4", "demo/demo_video_1.mp4", "data/detection_log_1.csv"),
-        ("data/input_video_2.mp4", "demo/demo_video_2.mp4", "data/detection_log_2.csv"),
-        ("data/input_video_3.mp4", "demo/demo_video_3.mp4", "data/detection_log_3.csv"),
-    ]
-    
-    detector = RoadAnomalyDetector(model_path=model_path)
-    
-    for input_vid, output_vid, output_csv in videos:
-        print(f"\nProcessing: {input_vid}")
-        detector.process_video(input_vid, output_vid, output_csv)
-```
 
 ### 5️⃣ Output
 
@@ -265,7 +244,7 @@ The system will:
 - ✅ Perform real-time inference (~5 FPS)
 - ✅ Display annotated output video
 - ✅ Save detection results in CSV format
-- ✅ Generate 3 demo videos with corresponding CSV logs
+- ✅ Generate demo videos with corresponding CSV logs
 
 ---
 
@@ -295,9 +274,9 @@ The system will:
 
 Three demonstration videos showing real-time detection, FPS display, and CSV logging are available in the `demo/` folder:
 
-- **demo_video_1.mp4** - Urban road scenario with potholes and vehicles
-- **demo_video_2.mp4** - Highway scenario with moving vehicles
-- **demo_video_3.mp4** - Rural road with animals and obstacles
+- **demo_video_1.mp4** - Rural road scenario with potholes
+- **demo_video_2.mp4** - Highway scenario with moving vehicles and Potholes
+- **demo_video_3.mp4** - Rural road with animals and Vehicles
 
 Each video has a corresponding CSV file in the `data/` folder with detailed detection logs.
 
