@@ -142,5 +142,71 @@ pip install -r requirements.txt
 
 python src/main.py
 
+---
+
+## ▶️ Output Behavior
+
+The system will:
+
+- Process recorded dashcam footage  
+- Perform real-time inference (~5 FPS)  
+- Display annotated output video  
+- Save detection results in CSV format  
+
+---
+
+## 📈 Performance Summary
+
+| Parameter         | Value                              |
+|------------------|------------------------------------|
+| Platform         | Raspberry Pi 4 (ARM Cortex-A72)    |
+| OS               | 64-bit Raspberry Pi OS             |
+| Model Format     | ONNX                               |
+| Inference Engine | ONNX Runtime                       |
+| Average FPS      | ~5 FPS                             |
+| Input Source     | Recorded MP4 Video                 |
+
+---
+
+## 🔬 Optimization Strategy
+
+- Lightweight YOLO11n architecture selected for edge deployment  
+- ONNX Runtime used for efficient ARM CPU execution  
+- Confidence threshold tuning to reduce false positives  
+- Optimized input resolution for balanced speed and accuracy  
+
+---
+
+## 📹 Demo
+
+A demonstration video showing real-time detection, FPS display, and CSV logging is available in the `demo/` folder.
+
+---
+
+## 🎓 Learning Outcomes
+
+- Edge AI deployment on ARM architecture  
+- Neural network optimization for embedded systems  
+- Real-time computer vision pipeline development  
+- Understanding speed vs accuracy trade-offs  
+
+---
+
+## 🚀 Future Improvements
+
+- INT8 quantization for higher FPS  
+- TensorFlow Lite comparison  
+- Distance estimation using monocular depth  
+- GPS-based anomaly tagging  
+
+---
+
+## 👩‍💻 Author
+
+Gayatri A  
+B.Tech Electronics & Communication Engineering  
+Bharat AI SoC Student Challenge
+
+
 
 
