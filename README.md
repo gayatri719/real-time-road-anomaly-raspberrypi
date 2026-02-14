@@ -380,9 +380,6 @@ Bharat AI SoC Student Challenge
 
 ---
 
- ONNX Runtime team
-- Raspberry Pi Foundation
-
 ---
 
-<p align="center">Made with ❤️ for safer roads</p>w
+<p align="center">Made with ❤️ for safer roads</p>
